@@ -1,0 +1,73 @@
+{
+  "info": {
+    "name": "API E-Commerce",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Kategori",
+      "item": [
+        {
+          "name": "Get Koleksi",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:8080/api/categories",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "categories"]
+            }
+          }
+        },
+        {
+          "name": "Create Koleksi",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "http://localhost:8080/api/categories",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "categories"]
+            }
+          }
+        },
+        {
+          "name": "Update Koleksi",
+          "request": {
+            "method": "PUT",
+            "url": {
+              "raw": "http://localhost:8080/api/categories",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "categories"]
+            }
+          }
+        },
+        {
+          "name": "Get Koleksi By Id",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:8080/api/categories/{id}",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "categories", "{id}"]
+            }
+          }
+        },
+        {
+          "name": "DELETE Koleksi",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "http://localhost:8080/api/categories/{id}",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "categories", "{id}"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
