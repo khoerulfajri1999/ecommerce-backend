@@ -27,9 +27,32 @@ public class WebSecurityConfig {
     @Autowired
     private AuthEntryPointJwt unauthorizedHandler;
 
+//    @Bean
+//    SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+//        http.cors(cors -> cors.disable())
+//                .csrf(csrf -> csrf.disable())
+//                .exceptionHandling(exceptionHandling ->
+//                        exceptionHandling.authenticationEntryPoint(unauthorizedHandler)
+//                )
+//                .sessionManagement(sessionManagement ->
+//                        sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+//                )
+//                .authorizeHttpRequests(authorize ->
+//                        authorize
+//                                .requestMatchers("/auth/**").permitAll()
+//                                .requestMatchers("/api/**").permitAll()
+////                                .requestMatchers("/api/payment/midtrans-webhook").permitAll()
+//                                .requestMatchers("/**").permitAll()
+//
+//                                .anyRequest().authenticated()
+//                )
+//                .addFilterBefore(authTokenFilter(), UsernamePasswordAuthenticationFilter.class);
+//            return http.build();
+//    }
+
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.cors(cors -> cors.disable())
+        http
                 .csrf(csrf -> csrf.disable())
                 .exceptionHandling(exceptionHandling ->
                         exceptionHandling.authenticationEntryPoint(unauthorizedHandler)
@@ -39,12 +62,14 @@ public class WebSecurityConfig {
                 )
                 .authorizeHttpRequests(authorize ->
                         authorize
+                                .requestMatchers("/api/payment/notification").permitAll() // Pastikan ini ada!
                                 .requestMatchers("/auth/**").permitAll()
                                 .requestMatchers("/api/**").permitAll()
                                 .anyRequest().authenticated()
                 )
                 .addFilterBefore(authTokenFilter(), UsernamePasswordAuthenticationFilter.class);
-            return http.build();
+
+        return http.build();
     }
 
     @Bean
@@ -66,7 +91,10 @@ public class WebSecurityConfig {
     public CorsFilter corsFilter() {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
+        config.addAllowedOriginPattern("*");
         config.addAllowedOrigin("http://localhost:3000");
+        config.addAllowedOrigin("https://api.sandbox.midtrans.com");
+        config.addAllowedOriginPattern("https://*.ngrok-free.app");
         config.setAllowCredentials(true);
         config.addAllowedHeader("*");
         config.addAllowedMethod("OPTIONS");

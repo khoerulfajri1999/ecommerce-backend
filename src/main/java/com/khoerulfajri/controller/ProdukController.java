@@ -1,6 +1,5 @@
 package com.khoerulfajri.controller;
 
-import com.khoerulfajri.entity.Kategori;
 import com.khoerulfajri.entity.Produk;
 import com.khoerulfajri.model.CommonResponse;
 import com.khoerulfajri.model.PagingResponse;
