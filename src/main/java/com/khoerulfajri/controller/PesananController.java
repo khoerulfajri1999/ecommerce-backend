@@ -12,6 +12,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -37,13 +38,13 @@ public class PesananController {
     }
 
     // PesananController.java
-    @PatchMapping("/pesanans/{pesananId}/cancel")
-    @PreAuthorize("hasAuthority('user')")
-    public PesananResponse cancelPesananUser(
-            @AuthenticationPrincipal UserDetailsImpl user,
-            @PathVariable("pesananId") String pesananId) {
-        return pesananService.cancelPesanan(pesananId, user.getUsername());
-    }
+//    @PatchMapping("/pesanans/{pesananId}/cancel")
+//    @PreAuthorize("hasAuthority('user')")
+//    public PesananResponse cancelPesananUser(
+//            @AuthenticationPrincipal UserDetailsImpl user,
+//            @PathVariable("pesananId") String pesananId) throws IOException, InterruptedException {
+//        return pesananService.cancelPesanan(pesananId, user.getUsername());
+//    }
 
     @PatchMapping("/pesanans/{pesananId}/terima")
     @PreAuthorize("hasAuthority('user')")

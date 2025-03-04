@@ -21,16 +21,17 @@ public class WalletService {
     private final WalletRepository walletRepository;
     private final PenggunaRepository penggunaRepository;
 
-    public WalletResponse createWallet(Wallet request) {
+    public WalletResponse createWallet(String username, Wallet request) {
 
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+//        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+//
+//        if (auth == null || !(auth.getPrincipal() instanceof UserDetailsImpl)) {
+//            throw new BadRequestException("Pengguna tidak valid atau tidak terautentikasi");
+//        }
+//
+//        String id = ((UserDetailsImpl) auth.getPrincipal()).getUsername();
 
-        if (auth == null || !(auth.getPrincipal() instanceof UserDetailsImpl)) {
-            throw new BadRequestException("Pengguna tidak valid atau tidak terautentikasi");
-        }
-
-        String id = ((UserDetailsImpl) auth.getPrincipal()).getUsername();
-        Pengguna pengguna = penggunaRepository.findById(id)
+        Pengguna pengguna = penggunaRepository.findById(username)
                 .orElseThrow(() -> new BadRequestException("Pengguna tidak ditemukan"));
 
         Wallet wallet = Wallet.builder()

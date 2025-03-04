@@ -2,6 +2,7 @@ package com.khoerulfajri.model;
 
 import com.khoerulfajri.entity.Pesanan;
 import com.khoerulfajri.entity.PesananItem;
+import com.khoerulfajri.entity.Produk;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -31,6 +32,9 @@ public class PesananResponse implements Serializable {
     private BigDecimal total;
     private StatusPesanan statusPesanan;
     private List<Item> items;
+    private String token;
+    private String redirectUrl;
+    private String vaNumber;
 
     public PesananResponse(Pesanan pesanan, List<PesananItem> pesananItems) {
         this.id = pesanan.getId();
@@ -44,11 +48,15 @@ public class PesananResponse implements Serializable {
         this.jumlah = pesanan.getJumlah();
         this.ongkir = pesanan.getOngkir();
         this.total = pesanan.getTotal();
+        this.token = pesanan.getToken();
+        this.redirectUrl = pesanan.getRedirectUrl();
+        this.vaNumber = pesanan.getVaNumber();
         this.statusPesanan = pesanan.getStatusPesanan();
 
         // Menggunakan Stream API untuk pembuatan List lebih efisien
         this.items = pesananItems.stream().map(pesananItem -> new Item(
                 pesananItem.getProduk().getId(),
+                pesananItem.getProduk(),
                 pesananItem.getDeskripsi(),
                 pesananItem.getKuantitas(),
                 pesananItem.getHarga(),
@@ -61,6 +69,7 @@ public class PesananResponse implements Serializable {
     @NoArgsConstructor
     public static class Item implements Serializable {
         private String produkId;
+        private Produk produk;
         private String namaProduk;
         private Integer kuantitas;
         private BigDecimal harga;

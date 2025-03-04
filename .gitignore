@@ -1,3 +1,4 @@
+<<<<<<<<<<<<<<  ✨ Codeium Command 🌟 >>>>>>>>>>>>>>>>
 HELP.md
 target/
 !.mvn/wrapper/maven-wrapper.jar
@@ -31,3 +32,8 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Application ###
+application.properties
+
+<<<<<<<  30d80aca-ccb3-42b7-b890-4f0ad1acc8ff  >>>>>>>

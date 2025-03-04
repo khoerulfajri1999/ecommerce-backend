@@ -157,4 +157,8 @@ public class TransaksiService {
                 .build());
         return response.body();
     }
+
+    public boolean existsByOrderId(String orderId) {
+        return transaksiRepository.existsById(orderId);
+    }
 }

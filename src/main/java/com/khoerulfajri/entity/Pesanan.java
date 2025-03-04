@@ -1,5 +1,6 @@
 package com.khoerulfajri.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.khoerulfajri.model.StatusPesanan;
 import jakarta.persistence.*;
 import lombok.*;
@@ -11,6 +12,9 @@ import java.util.List;
 
 @Data
 @Entity
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Pesanan implements Serializable {
 
     @Id
@@ -28,11 +32,20 @@ public class Pesanan implements Serializable {
     private BigDecimal jumlah;
     private BigDecimal ongkir;
     private BigDecimal total;
+    private String namaPenjual;
+    @Column(name = "token")
+    private String token;
+
+    @Column(name = "redirect_url")
+    private String redirectUrl;
+
+    @Column(name = "va_number")
+    private String vaNumber;
 
     @Enumerated(EnumType.STRING)
     private StatusPesanan statusPesanan;
 
-    @Temporal(TemporalType.TIMESTAMP)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX", timezone = "Asia/Jakarta")
     private Date waktuPesan;
 
     @Getter
